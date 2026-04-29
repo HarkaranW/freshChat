@@ -16,4 +16,5 @@ Route::prefix('freshchat')->group(function () {
     Route::get('/export', [FreshchatController::class, 'export']);
     Route::get('/sync', [FreshchatController::class, 'sync']);
 Route::get('/export-batch', [FreshchatController::class, 'exportBatch']);
+Route::get('/export-all', [FreshchatController::class, 'exportAll']);
 });

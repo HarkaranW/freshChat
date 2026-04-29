@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\FreshchatService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FreshchatController extends Controller
 {
@@ -93,12 +94,21 @@ class FreshchatController extends Controller
 
 public function exportBatch(Request $request)
 {
-    return response()->json(
-        $this->freshchatService->exportBatch(
-            $request->query('start'),
-            $request->query('end'),
-            (int) $request->query('limit', 100)
-        )
+    $result = $this->freshchatService->exportBatch(
+        $request->query('start'),
+        $request->query('end'),
+        (int) $request->query('limit', 20)
     );
+
+    return response()->download(storage_path('app/private/' . $result['path']));
+}
+
+public function exportAll(Request $request)
+{
+    $result = $this->freshchatService->exportAll(
+        (int) $request->query('limit', 10)
+    );
+
+    return response()->download(storage_path('app/private/' . $result['path']));
 }
 }

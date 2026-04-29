@@ -22,9 +22,15 @@
             margin: 32px auto;
         }
 
-        .header {
+        .header,
+        .card,
+        .stat,
+        .form-box {
             background: #ffffff;
             border: 1px solid #e5e7eb;
+        }
+
+        .header {
             border-radius: 16px;
             padding: 28px;
             margin-bottom: 20px;
@@ -40,7 +46,14 @@
             margin: 0;
             color: #64748b;
             line-height: 1.6;
-            max-width: 720px;
+            max-width: 760px;
+        }
+
+        .top-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
         }
 
         .stats {
@@ -51,8 +64,6 @@
         }
 
         .stat {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
             border-radius: 14px;
             padding: 18px;
         }
@@ -69,8 +80,6 @@
         }
 
         .card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
             border-radius: 16px;
             padding: 22px;
             margin-bottom: 20px;
@@ -88,13 +97,6 @@
             font-size: 14px;
         }
 
-        .top-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 18px;
-        }
-
         .forms {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -102,7 +104,6 @@
         }
 
         .form-box {
-            border: 1px solid #e5e7eb;
             border-radius: 14px;
             padding: 16px;
             background: #fafafa;
@@ -146,7 +147,8 @@
             border-color: #2563eb;
         }
 
-        .button, button {
+        .button,
+        button {
             display: inline-block;
             border: 0;
             cursor: pointer;
@@ -160,7 +162,8 @@
             line-height: 1;
         }
 
-        .button:hover, button:hover {
+        .button:hover,
+        button:hover {
             background: #1d4ed8;
         }
 
@@ -172,11 +175,13 @@
             background: #1e293b;
         }
 
-        .button.success, button.success {
+        .button.success,
+        button.success {
             background: #15803d;
         }
 
-        .button.success:hover, button.success:hover {
+        .button.success:hover,
+        button.success:hover {
             background: #166534;
         }
 
@@ -205,7 +210,8 @@
             letter-spacing: 0.04em;
         }
 
-        th, td {
+        th,
+        td {
             padding: 14px 12px;
             border-bottom: 1px solid #e5e7eb;
             text-align: left;
@@ -295,6 +301,7 @@
         <div class="top-actions">
             <a class="button secondary" href="/freshchat/tickets">Raw Tickets JSON</a>
             <a class="button secondary" href="/freshchat/database">Local Database</a>
+            <a class="button success" href="/freshchat/export-all?limit=10">Export All</a>
         </div>
     </section>
 
@@ -324,7 +331,9 @@
 
         <section class="card">
             <h2 class="card-title">Sync and Export</h2>
-            <p class="card-subtitle">Use a small date range first to avoid Freshdesk rate limits.</p>
+            <p class="card-subtitle">
+                Use smaller date ranges first to avoid Freshdesk rate limits. For larger exports, use Export With Progress.
+            </p>
 
             <div class="forms">
                 <div class="form-box">
@@ -346,7 +355,7 @@
                 </div>
 
                 <div class="form-box">
-                    <h3>Batch export</h3>
+                    <h3>Quick batch export</h3>
 
                     <form class="form-row" action="/freshchat/export-batch" method="GET">
                         <div class="field">
@@ -361,7 +370,7 @@
 
                         <div class="field">
                             <label for="limit">Limit</label>
-                            <input id="limit" name="limit" type="number" value="50" min="1" max="100">
+                            <input id="limit" name="limit" type="number" value="20" min="1" max="100">
                         </div>
 
                         <button class="success" type="submit">Export</button>
